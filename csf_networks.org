@@ -1,2 +1,8 @@
-* Notes
+#+TITLE: A distance comparison theorem for curve shortening of planar networks
+#+AUTHOR: Paul Bryan
 
+* Notes								   :noexport:
+* Introduction
+* Distance comparison
+* Comparison functions
+* Convergence
