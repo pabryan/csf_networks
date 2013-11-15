@@ -1,8 +1,46 @@
 #+TITLE: A distance comparison theorem for curve shortening of planar networks
 #+AUTHOR: Paul Bryan
+#+LATEX_HEADER: \DeclareMathOperator{\tangspeed}{v}
 
 * Notes								   :noexport:
 * Introduction
+* Notation and preliminary results
+#+BEGIN_DEFN
+A /closed, embedded network of smooth curves with triple-junctions/ is a union of unbounded smooth, embedded curves $(L_i: [0, \infty))_{i=1}^n$ and a piecewise smooth curve $\gamma$ with $n$ nodes, written $\gamma = (\gamma_i : [0,1] \to \RR^2)_{i=1}^n$ with each $\gamma_i$ a smooth embeddings, such that
+1. $\gamma_i(0,1) \cap \gamma_j(0,1) = \emptyset$, $i\ne j$,
+2. $\gamma_i(1) = \gamma_{i+1}(0)$ with $i$ taken modulo $n$,
+3. $L_i(0) = \gamma_i(0)$,
+4. $L_i(0,\infty) \subset \cmplt{\Omega}$ with $\Omega$ the closed region enclosed by $\gamma$, 
+5. The angle between $\gamma_i'(1)$ and $\gamma_{i+1}'(0)$ equals the angle between $\gamma_{i+1}'(0)$ and $L_{i+1}'(0)$ equals $2\pi/3$ (/tri-angle condition/).
+Each point $\gamma_i(0)$ is called a /node/. 
+#+END_DEFN
+
+#+BEGIN_DEFN
+A smooth, one-parameter family $(L_t = (L_i)_t, \gamma_t = ((\gamma_i)_t))$ of closed, embedded networks of smooth curves evolves by /curve shortening/ if for each $i$ and for all $t\in(0,1)$,
+\begin{align*}
+\left(\pd[\gamma_i]{t}\right)^{\perp} &= -\curvecurv \\
+\intertext{and}
+\left(\pd[L_i]{t}\right)^{\perp} &= -\curvecurv
+\end{align*}
+where for a vector field $X$ along a curve, $X^{\perp} = \ip{X}{\nor}$ denotes the normal component of $X$ with $\nor$ the unit outer normal and $\curvecurv$ the curvature of the curve.
+#+END_DEFN
+
+For $\alpha = L_i, \gamma_i$, write
+\[
+\pd[\alpha_i]{t} = (\tangspeed \tang - \curvecurv \nor)_{\alpha_i}.
+\]
+The requirement that $(L_t, \gamma_t)$ remains a closed, embedded network requires that 
+\begin{align*}
+(\tangspeed \tang - \curvecurv \nor)_{\gamma_i} (1) &= (\tangspeed \tang - \curvecurv \nor)_{\gamma_{i+1}}(0) \\
+\intertext{and}
+(\tangspeed \tang - \curvecurv \nor)_{L_i} (0) &= (\tangspeed \tang - \curvecurv \nor)_{\gamma_i}(0).
+\end{align*}
+The tri-angle condition then imposes the adittional condition that for each $i$,
+
+#+BEGIN_REM
+Of particular interest is the case where each $L_i$ is a half-line. In this case, since $\curvecurv = 0$ along $L_i$, the nodes are constrained to move along the line through $L_i$.
+#+END_REM
+
 * Distance comparison
 * Comparison functions
 * Convergence
