@@ -66,12 +66,12 @@ The tri-angle condition then imposes the adittional condition that for each $i$,
 
 * The chord/arc profile
 
-In this section we introduce the chord/arc-profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is similar to \cite{alpha_csf_dist_comp} for flows of smooth curves in the plane. The presence of nodes for networks is of course seen here.
+In this section we introduce the chord/arc-profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is similar to \cite{alpha_csf_dist_comp} for flows of smooth curves in the plane. Of course, the presence of nodes for networks is felt here.
 
 ** Definition and basic properties
 
-\begin{defn}
-Let $\gamma$ be a smooth embedded, closed curve in the plane with total length $2\pi$ given by the embedding $X: \sphere^1 \to \RR^2$. For $x\in [0,\pi]$, the chord/arc-profile of $\gamma$ is defined as
+#+BEGIN_defn
+Let $\gamma$ be a rectifiable, embedded, curve in the plane with total length $2\pi$ given by the embedding $X: \sphere^1 \to \RR^2$. For $x\in [0,\pi]$, the chord/arc-profile of $\gamma$ is defined as
 \[
 \chordarcprofile (x) = \inf\{d(p, q): (p,q) \in \sphere^1\times\sphere^1, \ell(p,q) = x\}
 \]
@@ -80,39 +80,35 @@ where $d(p,q) = \abs{X(p) - X(q)}$ is the \emph{extrinsic} distance in $\RR^2$ b
 \chordarcprofile (x) = \inf\{d(p, q): (p,q)\in \sphere^1\times\sphere^1, \ell(p,q) = 2\pi-x\}
 \]
 for $x\in[\pi,2\pi]$. With this definition, $\chordarcprofile$ is symmetric about $\pi$.
-\end{defn}
+#+END_defn
 
-\begin{remark}
+#+BEGIN_remark
 By compactness of $\sphere^1\times \sphere^1$ (which parametrises the set of connected arcs of $\gamma$) and continuity of $\ell$, $d$, for any $x$, the infimum is attained so that there exists $(p_0,q_0) \in \sphere^1 \times \sphere^1$ with $\ell(p_0, q_0) = x$ and such that $\chordarcprofile(x) = d(p_0, q_0)$. Also, since $\ell(p,p) = 0$, for any $x\in(0,2\pi)$ we have $p_0 \ne q_0$ and so $d$ is smooth at $(p_0, q_0)$.
-\end{remark}
+#+END_remark
 
-The next proposition gives the asymptotic behaviour of the chord/arc-profile near the end point $x=0$, and so by symmetry also at the end point $x=2\pi$.
+The next proposition gives the asymptotic behaviour of the chord/arc-profile of networks $\network$, near the end point $x=0$, and so by symmetry also at the end point $x=2\pi$.
 
 \begin{prop}
-As $x\to 0$ the chord/arc-profile satisfies
+Let $\network$ be a network, with piecewise closed curve $\gamma$. Then as $x\to 0$ the chord/arc-profile of $\gamma$ satisfies
 \[
-\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} = - \frac{\sup_{\sphere^1} \curvecurv^2}{24}.
+\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} =
 \]
 \end{prop}
 
 \begin{proof}
-Parametrise $\gamma$ by arc-length. As in \cite{MR2794630}, 
-\[
-d(s_1, s_2) = \ell(s_1,s_2) - \frac{\curvecurv(s_1)^2}{24} \ell(s_1,s_2)^3 + \bigo(\ell(s_1, s_2)^4)
-\]
-where the constant in the $\bigo$ term is bounded independently of $s_1,s_2$.
+First, if more than one node lies between $p$ and $q$, then $\ell(p,q) \geq \min(L(\gamma_i) > 0$, so choosing $x < \min(L(\gamma_i)$, we may assume that at most one node lies between $p$ and $q$.
 
-In particular, letting $s_{\max}$ be such that $\sup_s \curvecurv^2(s) = \curvecurv^2(s_{\max})$ we obtain
+Next, observe that on a single smooth arc $\gamma_i$ (including if one of $p,q$ is a node), we have \cite{alpha_csf_dist_comp},
 \[
-\frac{d(s_{\max}, s_{\max} + x) - x}{x^3} = -\frac{\sup \curvecurv^2}{24} + \bigo(x^4)
+\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} = - \frac{\sup_{\sphere^1} \curvecurv^2}{24}
 \]
-since $\abs{s_{\max} + x - s_{\max}} = x$.
 
-Now let $(s_1(x), s_2(x))$ be such that $\chordarcprofile(x) = d(s_1(x), s_2(x))$, $\ell(s_1(x), s_2(x)) = x$. Then 
+On the other hand, for $p$, $q$ lying strictly on either side of a node, to first order we have
 \[
-0 \leq d(s_{\max}, s_{\max} + x) - \chordarcprofile(x) = \frac{\curvecurv(s_1(x))^2 - \sup \curvecurv^2}{24} x^3 + \bigo(x^4).
+d = 
 \]
-Since $\curvecurv(s_1(x))^2 < \sup \curvecurv^2$, the inequality ensures that $\curvecurv(s_1(x))^2 \to \sup \curvecurv^2$ as $x\to 0$ which gives the proposition.
+
+Thus for sufficiently small $x$, the infimum in the definition of $\chordarcprofile$ is attained for $p,q$ lying on either side of a node. In that case, we compute
 \end{proof}
 
 ** Variations
