@@ -64,6 +64,8 @@ where $\tang$ is the unit tangent to $\alpha$ and $\tangspeed$ is a smooth funct
 \end{align*}
 The tri-angle condition then imposes the adittional condition that for each $i$,
 
+* Short time existence and uniqueness
+Clean up \cite{MR1240580} and make it more geometric.
 * The chord/arc profile
 
 In this section we introduce the chord/arc-profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is similar to \cite{alpha_csf_dist_comp} for flows of smooth curves in the plane. Of course, the presence of nodes for networks is felt here.
