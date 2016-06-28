@@ -100,44 +100,34 @@ In this section we introduce the chord/arc-profile of a simple closed curve and 
 ** Definition and basic properties
 
 #+BEGIN_defn
-Let $\gamma$ be a rectifiable, embedded, curve in the plane with total length $2\pi$ given by the embedding $X: \sphere^1 \to \RR^2$. For $x\in [0,\pi]$, the chord/arc-profile of $\gamma$ is defined as
+Let $\gamma$ be a rectifiable, Jordan curve in the plane with total length $L$ parametrised by $\gamma: \sphere^1 \to \RR^2$. For $x\in (0, 2\pi)$, the chord/arc-profile of $\gamma$ is defined as
 \[
-\chordarcprofile (x) = \inf\{d(p, q): (p,q) \in \sphere^1\times\sphere^1, \ell(p,q) = x\}
+\chordarcprofile (x) = \frac{2\pi}{L} \inf\left\{d(p, q): (p,q) \in \sphere^1\times\sphere^1, \ell(p,q) = \frac{L}{2\pi} x\right\}
 \]
-where $d(p,q) = \abs{X(p) - X(q)}$ is the \emph{extrinsic} distance in $\RR^2$ between $p$ and $q$ and $\ell(p,q) = \int_p^q ds$ is the arclength or \emph{intrinsic} distance from $p$ to $q$. It is convenient to extend $\chordarcprofile$ to $[0,2\pi]$ by letting
-\[
-\chordarcprofile (x) = \inf\{d(p, q): (p,q)\in \sphere^1\times\sphere^1, \ell(p,q) = 2\pi-x\}
-\]
-for $x\in[\pi,2\pi]$. With this definition, $\chordarcprofile$ is symmetric about $\pi$.
+where $d(p,q) = \abs{X(p) - X(q)}$ is the \emph{extrinsic} distance in $\RR^2$ between $p$ and $q$ and $\ell(p,q) = \int_p^q ds$ is the arclength or \emph{intrinsic} distance from $p$ to $q$. Note that for $x \in (\pi, 2\pi)$, to say that $\ell(p,q) = \frac{L}{2\pi} x \in (L/2,L)$ is to say that one of the two arcs joining $p$ to $q$ has length $\ell(p,q)$. Of course the shorter arc has length $L-\ell(p,q) = \frac{L}{2\pi}(2\pi - x) \in (0, L/2)$, and so with our definition, $\chordarcprofile$ is symmetric about $\pi$.
 #+END_defn
 
 #+BEGIN_remark
-By compactness of $\sphere^1\times \sphere^1$ (which parametrises the set of connected arcs of $\gamma$) and continuity of $\ell$, $d$, for any $x$, the infimum is attained so that there exists $(p_0,q_0) \in \sphere^1 \times \sphere^1$ with $\ell(p_0, q_0) = x$ and such that $\chordarcprofile(x) = d(p_0, q_0)$. Also, since $\ell(p,p) = 0$, for any $x\in(0,2\pi)$ we have $p_0 \ne q_0$ and so $d$ is smooth at $(p_0, q_0)$.
+By compactness of $\sphere^1\times \sphere^1$ (which parametrises the set of connected arcs of $\gamma$) and by continuity of $\ell$, $d$, for any $x$ the infimum is attained so that there exists $(p_0,q_0) \in \sphere^1 \times \sphere^1$ with $\ell(p_0, q_0) = \frac{L}{2\pi}x$ and such that $\chordarcprofile(x) = \frac{2\pi}{L} d(p_0, q_0)$. Also, since $\ell(p,p) = 0$, for any $x\in(0,2\pi)$ we have $p_0 \ne q_0$ and so $d$ is smooth at $(p_0, q_0)$.
 #+END_remark
 
 The next proposition gives the asymptotic behaviour of the chord/arc-profile of networks $\network$, near the end point $x=0$, and so by symmetry also at the end point $x=2\pi$.
 
-\begin{prop}
+#+BEGIN_prop
 Let $\network$ be a network, with piecewise closed curve $\gamma$. Then as $x\to 0$ the chord/arc-profile of $\gamma$ satisfies
 \[
-\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} =
+\lim_{x\to 0} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^3} = \frac{1}{16} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}
 \]
-\end{prop}
+#+END_prop
 
 \begin{proof}
-First, if more than one node lies between $p$ and $q$, then $\ell(p,q) \geq \min(L(\gamma_i) > 0$, so choosing $x < \min(L(\gamma_i)$, we may assume that at most one node lies between $p$ and $q$.
+By taking $x$ small, we consider either points $(p,q) \in \overline{\gamma_i}$ or points $p \in \gamma_i, q \in \gamma_{i+1}$. In the former case, because the curve is straight to first order, $d = \ell + \bigo(\ell^2)$. In the latter case, to first order, the curve is two straight lines meeting at an angle of $2\pi/3$ and so $d = \tfrac{\sqrt{3}}{2} \ell + \bigo(\ell^2)$. Thus for sufficiently small $x$, the infimum in the definition of $\chordarcprofile$ is attained in the latter case with $p,q$ lying on either side of a node.
 
-Next, observe that on a single smooth arc $\gamma_i$ (including if one of $p,q$ is a node), we have \cite{alpha_csf_dist_comp},
+In that case, parametrising by arc-length $s$, near each node $a_i$ we compute,
 \[
-\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} = - \frac{\sup_{\sphere^1} \curvecurv^2}{24}
+d(a_i - s, a_i + s) = \sqrt{3} s + \frac{1}{4} (\curvecurv^+(a_i) + \curvecurv^-(a_i))s^3 + \bigo(s^5),
 \]
-
-On the other hand, for $p$, $q$ lying strictly on either side of a node, to first order we have
-\[
-d = 
-\]
-
-Thus for sufficiently small $x$, the infimum in the definition of $\chordarcprofile$ is attained for $p,q$ lying on either side of a node. In that case, we compute
+and the result follows since $\ell(a_i-s, a_i+s) = 2s$.
 \end{proof}
 
 ** Variations
