@@ -132,7 +132,9 @@ and the result follows since $\ell(a_i-s, a_i+s) = 2s$.
 
 ** Variations
 
-The main techniques we employ in this paper to understand the chord/arc-profile are variational and we begin with the first and second variations of the geometric quantities $d$ and $\ell$. The derivation is fairly standard these days, but we give the full details here to be complete. It will prove useful to make various definitions that will feature throughout this paper. First let
+The main techniques we employ in this paper to understand the chord/arc-profile are variational and we begin with the first and second variations of the geometric quantities $d$ and $\ell$.
+
+It will prove useful to make various definitions that will feature throughout this paper. First let
 \[
 w(p, q) = \frac{X(q) - X(p)}{d(p,q)}
 \]
@@ -182,7 +184,29 @@ with corresponding eigenvalues
 \end{split}
 \end{equation} 
 
-\begin{prop}[Spatial Variation]
+Now we may express the first and second variations of distance in this notation. The derivation is quite standard these days, but we give the full details here to be complete, and to illustrate the effect of the nodes, which is only felt by the extrinsic distance.
+
+#+BEGIN_lemma
+The variation formulae are
+#+END_lemma
+
+#+BEGIN_proof
+
+#+END_proof
+
+Next, let us note that optimal points are never nodes.
+
+#+BEGIN_lemma
+Let $(p_0,q_0) \in \sphere^1 \times \sphere^1$ optimal; that is $Z(\tfrac{2\pi}{L}\ell(p_0,q_0)) = \tfrac{L}{2\pi} d(p_0, q_0)$. Then $p_0,q_0 \notin \{a_i\}$.
+#+END_lemma
+
+#+BEGIN_proof
+There are precisely two length preserving variations, and one increases $d$.
+#+END_proof
+
+Using the lemma, we may now obtain the second variation formula at optimal points.
+
+\begin{prop}[Spatial Second Variation at Optimal Points]
 \label{prop:spatial_var}
 Let $(p_0, q_0) \in \sphere^1 \times \sphere^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile(\ell(p_0,q_0)) = d(p_0, q_0)$), then 
 \[
