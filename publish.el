@@ -1,7 +1,7 @@
 (setq pb/csf_networks-org-publish-project-alist
       '(("csf_networks"
 	:base-directory "~/working/academic/research/csf_networks"
-	:publishing-directory "~/publish/csf_networks"
+	:publishing-directory "~/publish/academic/research/csf_networks"
 	:base-extension "org"
 	:recursive t
 	:publishing-function org-latex-publish-to-latex
