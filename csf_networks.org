@@ -30,8 +30,10 @@
 * Notes								   :noexport:
 * Introduction
 * Notation and preliminary results
-#+BEGIN_DEFN
+
+#+BEGIN_defn
 A /closed, embedded network of smooth curves with $n$ nodes and triple-junctions/ $\network$ is a union of smooth, embedded curves $(L_i: [0,a) \to \RR^2)_{i=1}^n$ and a piecewise smooth, closed, embedded curve $\gamma$, written $\gamma = (\gamma_i: [0,1] \to \RR^2)_{i=1}^n$ with each $\gamma_i$ a smooth embedding, such that
+, embedded curves $(L_i: [0,a) \to \RR^2)_{i=1}^n$ and a piecewise smooth, closed, embedded curve $\gamma$, written $\gamma = (\gamma_i: [0,1] \to \RR^2)_{i=1}^n$ with each $\gamma_i$ a smooth embedding, such that
 
 1. either $\lim_{x\to a} \abs{L_i(x)} = \infty$ for all $i$ ($a = \infty$) or $\lim_{x\to a} L_i(x) \in \bdry{K}$ where $K$ is a compact, convex  set with interior enclosing $\gamma$ ($a = 1$),
 2. $\gamma_i(1) = \gamma_{i+1}(0)$ with $i$ taken modulo $n$,
@@ -40,9 +42,17 @@ A /closed, embedded network of smooth curves with $n$ nodes and triple-junctions
 5. The angle between $\gamma_i'(1)$ and $\gamma_{i+1}'(0)$ equals the angle between $\gamma_{i+1}'(0)$ and $L_{i+1}'(0)$ equals $2\pi/3$ (/tri-angle condition/).
 
 Each point $\gamma_i(0)$ is called a /node/. 
-#+END_DEFN
+#+END_defn
 
-#+BEGIN_DEFN
+We will work with the loop.
+
+#+BEGIN_defn
+A /triple-compatible loop with $k$ nodes/ is a continuous embedding $\network : \sphere^1 \to \RR^2$ that is smooth on $\sphere^1 \setdiff \{a_i\}_{i=1}^k\}$ for $k$ distinct points, $a_i \in \sphere^1$ (the nodes) such that the /interior angles/ made by the one-sided tangent vectors at each $a_i$ is $2\pi/3$.
+#+END_defn
+
+The purpose of this paper is to study the evolution of triple-compatible loops under the curve shortening flow.
+
+#+BEGIN_defn
 A smooth, one-parameter family $\network_t = (L_t = (L_i)_t, \gamma_t = ((\gamma_i)_t))_{i=1}^n$ of closed, embedded networks of smooth curves evolves by /curve shortening/ if for each $i$, away from the nodes we have
 \begin{align*}
 \left(\pd[\gamma_i]{t}\right)^{\perp} &= -\curvecurv
@@ -50,7 +60,7 @@ A smooth, one-parameter family $\network_t = (L_t = (L_i)_t, \gamma_t = ((\gamma
 \left(\pd[L_i]{t}\right)^{\perp} &= -\curvecurv.
 \end{align*}
 Here, for a vector field $X$ along a curve, $X^{\perp} = \ip{X}{\nor}$ denotes the normal component of $X$ with $\nor$ a choice of unit normal away from the nodes and $\curvecurv$ the curvature of the curve. We will assume that $\nor$ is exterior pointing on $\gamma$.
-#+END_DEFN
+#+END_defn
 
 For $\alpha = L_i, \gamma_i$, we can write
 \[
@@ -63,6 +73,23 @@ where $\tang$ is the unit tangent to $\alpha$ and $\tangspeed$ is a smooth funct
 (\tangspeed \tang - \curvecurv \nor)_{L_i} (0) &= (\tangspeed \tang - \curvecurv \nor)_{\gamma_i}(0).
 \end{align*}
 The tri-angle condition then imposes the adittional condition that for each $i$,
+
+It will be convenient for us to fix a parametrisation of our smooth family of loops. Thus we assume,
+\[
+(x, t) \in [0, L] \times [0, T) \mapsto \network(x, t) \in \RR^2
+\]
+with a partition,
+\[
+0 = a_0 < a_1 < \cdots < a_{k-1} < a_k = L
+\]
+such that each $\gamma_i = \gamma|_{(a_{i-1}, a_i)}$ is smooth, $\gamma_{i+1}(a_i) = \gamma_i(a_i)$ (with $i$ taken modulo $k$) and writing $T^+(a_i) = \lim_{x\to a_i^+} \gamma_{i+1}'(x)$, $T^-(a_i) = \lim_{x\to a_i^-} \gamma_{i}'(x)$ we have
+\[
+\ip{T^+}{T^-} = 1/2.
+\]
+To say that the interior angle is $2\pi/3$ requires also that
+\[
+\ip{T^+}{N^-} = , \quad \ip{T^-}{N^+} =
+\]
 
 * Short time existence and uniqueness
 Clean up \cite{MR1240580} and make it more geometric.
