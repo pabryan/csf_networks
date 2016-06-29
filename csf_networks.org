@@ -29,26 +29,53 @@
 
 * Notes								   :noexport:
 * Introduction
-* Notation and preliminary results
+* Notation and Definitions
 
-#+BEGIN_defn
-A /closed, embedded network of smooth curves with $n$ nodes and triple-junctions/ $\network$ is a union of smooth, embedded curves $(L_i: [0,a) \to \RR^2)_{i=1}^n$ and a piecewise smooth, closed, embedded curve $\gamma$, written $\gamma = (\gamma_i: [0,1] \to \RR^2)_{i=1}^n$ with each $\gamma_i$ a smooth embedding, such that
-, embedded curves $(L_i: [0,a) \to \RR^2)_{i=1}^n$ and a piecewise smooth, closed, embedded curve $\gamma$, written $\gamma = (\gamma_i: [0,1] \to \RR^2)_{i=1}^n$ with each $\gamma_i$ a smooth embedding, such that
+** Networks
 
-1. either $\lim_{x\to a} \abs{L_i(x)} = \infty$ for all $i$ ($a = \infty$) or $\lim_{x\to a} L_i(x) \in \bdry{K}$ where $K$ is a compact, convex  set with interior enclosing $\gamma$ ($a = 1$),
-2. $\gamma_i(1) = \gamma_{i+1}(0)$ with $i$ taken modulo $n$,
-3. $L_i(0) = \gamma_i(0)$,
-4. $L_i(0,a) \subset \cmplt{\Omega}$ with $\Omega$ the closed region enclosed by $\gamma$, 
-5. The angle between $\gamma_i'(1)$ and $\gamma_{i+1}'(0)$ equals the angle between $\gamma_{i+1}'(0)$ and $L_{i+1}'(0)$ equals $2\pi/3$ (/tri-angle condition/).
+We consider networks with a single loop. For us this means we have a piecewise smooth embedding for the loop:
+\[
+\gamma : \sphere^1 \to \RR^2.
+\]
+Let $\{a_i\}_{i=0}^{k-1} \subset \sphere^1$ be such that $\gamma$ is smooth on $\sphere^1 \setdiff \{a_i\}$. We call $\{a_i\}$ the nodes. We also have free ends $L_i : [0, 1) \to \RR^2$ which are pairwise disjoint, smooth embeddings satisfying $L_i(0) = \gamma(a_i)$, each curve $L_i(0, 1)$ is disjoint from $\gamma(\sphere^1)$, and either,
+1. $\lim_{x\to 1} |L_i(x)| = \infty$, or
+2. $\lim_{x\to 1} L_i(x) \in \bdry{\Omega}$ where $\Omega \subset \RR^2$ is a compact, convex set with non-empty interior properly containing the loop, $\gamma(\sphere^1) \subset \interior{\Omega}$.
+In either case, $L_i(0,1)$ is contained in the region exterior to $\gamma(\sphere^1)$.
 
-Each point $\gamma_i(0)$ is called a /node/. 
-#+END_defn
+Fixing an orientation on $\sphere^1$ and parametrising the loop $\gamma$ over $[0, 2\pi]$ we assume that,
+\[
+0 = a_0 < a_1 < \cdots < a_{k-1} < a_k = 2\pi
+\]
+and we always consider $i$ modulo $k$. Let us also write $\gamma_i = \gamma|_{[a_{i-1}, a_i]}$ for the smooth connected arcs, which by assumption are smooth up to the boundary with $\gamma_i(a_i) = \gamma_{i+1}(a_i)$ ($i$ modulo $k$).
 
-We will work with the loop.
+We also impose the /triple condition/ at the nodes: let
+\[
+\tang^{\pm} (a_i) = \lim_{x\to a_i^{\pm}} \frac{\gamma'(x)}{\|\gamma'(x)\|}, \quad \tang_i = \frac{L_i'(0)}{\|L_i'(0)\|}
+\]
+denote respectively the tangents to the loop on either side of the node $a_i$ and the tangent to the free curve $L_i$ at $a_i$. Then
+\begin{equation}
+\label{eq:triplecondition}
+\ip{\tang^+}{-\tang^-} = \ip{\tang^{\pm}}{\tang_i} - \frac{1}{2}.
+\end{equation}
+In other words, the tangents make equal angles at the nodes. See figure \ref{fg:network}.
 
-#+BEGIN_defn
-A /triple-compatible loop with $k$ nodes/ is a continuous embedding $\network : \sphere^1 \to \RR^2$ that is smooth on $\sphere^1 \setdiff \{a_i\}_{i=1}^k\}$ for $k$ distinct points, $a_i \in \sphere^1$ (the nodes) such that the /interior angles/ made by the one-sided tangent vectors at each $a_i$ is $2\pi/3$.
-#+END_defn
+Let us write $\tang$ for the oriented, unit tangent and $\nor$ for the unit, outer normal to $\gamma$ on the smooth part $\gamma^{\ast} = \gamma(\sphere^1\setdiff\{a_i\})$. Let us also write $\tang_i$, $\nor_i$ for the oriented unit, tangent and oriented, outer normal respectively to the connected smooth arcs $\gamma_i$, and
+\[
+\nor_i^{\pm}(a_i) = \lim_{x\to a_i^{\pm}} \nor
+\]
+for the normals either side of the node $a_i$. From the triple condition \eqref{eq:triplecondition} and the fact that each $L_i$ is outward pointing, we have the relations
+\begin{equation}
+\label{eq:triplerelations}
+\ip{-\tang^+}{\nor^-} = \ip{\tang^-}{\nor^+} = \ip{\nor_i^{\pm}}{\tang_i} = \frac{\sqrt{3}}{2}.
+\end{equation}
+Analogously we also write $\curvecurv$ for the curvature of $\gamma^{\ast}$, $\gamma_i$ for the curvature of the connected arcs $\gamma_i$ and $\curvecurv^{\pm}$ for the curvature of the loop on either side of the node. If needed, we will write $\curvecurv_{L_i}$ for the curvature of the free curves $L_i$. Our convention for the Frenet-Serret equations is that the curvature vector of a convex curve is inward pointing so that,
+\begin{equation}
+\label{eq:frenetserret}
+\partial_s \tang = -\curvecurv \nor, \quad \partial_s \nor = \curvecurv \tang
+\end{equation}
+with $s$ denoting the arc-length parameter.
+
+** Curve Shortening of Networks
 
 The purpose of this paper is to study the evolution of triple-compatible loops under the curve shortening flow.
 
