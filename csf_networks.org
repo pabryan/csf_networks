@@ -12,6 +12,7 @@
 #+LATEX_HEADER: \DeclareMathOperator{\chordarcprofile}{\mathcal{Z}}
 #+LATEX_HEADER: \newcommand\holder{H\"older}
 #+LATEX_HEADER: \DeclareMathOperator{\network}{\mathcal{N}}
+#+LATEX_HEADER: \DeclareMathOperator{\corneranglespeed}{{\Delta v}}
 
 # *** For bundling
 #+LATEX_HEADER: \usepackage{snapshot}
@@ -46,7 +47,7 @@ Fixing an orientation on $\sphere^1$ and parametrising the loop $\gamma$ over $[
 \[
 0 = a_0 < a_1 < \cdots < a_{k-1} < a_k = 2\pi
 \]
-and we always consider $i$ modulo $k$. Let us also write $\gamma_i = \gamma|_{[a_{i-1}, a_i]}$ for the smooth connected arcs, which by assumption are smooth up to the boundary with $\gamma_i(a_i) = \gamma_{i+1}(a_i)$ ($i$ modulo $k$).
+and we always consider $i$ modulo $k$. Let us also write $I_i = [a_{i-1}, a_i]$ and $\gamma_i = \gamma|_{I_i}$ for the smooth connected arcs, which by assumption are smooth up to the boundary and satisfy $\gamma_i(a_i) = \gamma_{i+1}(a_i)$ ($i$ modulo $k$).
 
 We also impose the /triple condition/ at the nodes: let
 \[
@@ -107,6 +108,11 @@ Thus we have
 \tangspeed_i^+ = \frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+, \quad \tangspeed_i^- = -\frac{2}{\sqrt{3}} \curvecurv_i^+ + \frac{1}{\sqrt{3}} \curvecurv_i^-.
 \end{equation}
 
+Finally, let us define the corner tangential speed difference,
+\[
+\corneranglespeed_i = \tangspeed_i^+ - \tangspeed_i^- = \frac{1}{\sqrt{3}} \left(\curvecurv_i^- + \curvecurv_i^+\right).
+\]
+
 ** Basic Evolution Equations
 
 Let us assume that the loop $\gamma_t$ is parametrised by $(u, t) \in [0, 2\pi] \times [0, T)$. Throughout we denote by $s$ the arc length parameter so that
@@ -125,6 +131,39 @@ The evolution of geometric quantities under the Curve Shortening Flow is the sam
 4. $\pd[\nor]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \tang$
 5. $\pd[\curvecurv]{t} = \partial_s^2 \curvecurv + \curvecurv^3 + \tangspeed \partial_s \curvecurv$.
 #+END_lemma
+
+The /extrinsic distance/,
+\[
+d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|
+\]
+and the /oriented/, /intrinsic distance/ or /arc length/,
+\[
+\ell_t(p, q) = \int_{\gamma_t} ds_t = \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} ds_t + \int_{a_{j-1}}^q ds_t
+\]
+where $p \in I_i = [a_{i-1}, a_i]$, $q \in I_j = [a_{j-1}, a_j]$ with $j\geq i$.
+
+Note that by oriented, we mean the length along $\gamma$ from $p$ to $q$ in the chosen orientation of $\gamma$. Thus either $\ell(p,q)$ equals the intrinsic distance between $p$ and $q$, or $L$ minus the intrinsic length, where $L$ denotes the total length of $\gamma$.
+
+Let us also define
+\[
+w(p, q) = \frac{\gamma(q) - \gamma(p)}{d(p,q)},
+\]
+the unit vector pointing from $p$ to $q$.
+
+Later we will only require the evolution of the extrinsic and intrinsic distances at smooth points.
+
+#+BEGIN_lemma
+\label{lem:distance_evolution}
+
+Let $(p,q) \in \gamma_t^{\ast}$ be smooth points. Then,
+\begin{align*}
+\partial_t d_t(p, q) &= -\curvecurv_q \ip{\nor_q}{w} + \curvecurv_p \ip{\nor_p}{w} + \tangspeed_q \ip{\tang_q}{w} - \tangspeed_p \ip{\tang_p}{w}, \\
+\partial_t \ell_t(p, q) &= - \int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) - \sum_{m=i}^{j-1} \corneranglespeed_m \\
+\intertext{and}
+\partial_t L &= - \int_{\gamma} \curvecurv^2 ds + \sum_{m=i}^{k} \corneranglespeed_m.
+\end{align*}
+#+END_lemma
+
 
 * Short time existence and uniqueness
 Clean up \cite{MR1240580} and make it more geometric.
