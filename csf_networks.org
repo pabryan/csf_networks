@@ -107,9 +107,24 @@ Thus we have
 \tangspeed_i^+ = \frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+, \quad \tangspeed_i^- = -\frac{2}{\sqrt{3}} \curvecurv_i^+ + \frac{1}{\sqrt{3}} \curvecurv_i^-.
 \end{equation}
 
+** Basic Evolution Equations
+
+Let us assume that the loop $\gamma_t$ is parametrised by $(u, t) \in [0, 2\pi] \times [0, T)$. Throughout we denote by $s$ the arc length parameter so that
 \[
-\ip{T^+}{N^-} = , \quad \ip{T^-}{N^+} =
+\partial_s = \frac{1}{\|\gamma_t'|} \partial_u, \quad ds = \|\gamma_t'\| du
 \]
+where primes denote differentiation with respect to $u$.
+
+The evolution of geometric quantities under the Curve Shortening Flow is the same for networks as in the smooth case. This is immediate for any pointwise quantities, and we record the required equations in a lemma for later convenience.
+
+#+BEGIN_lemma
+\label{lem:basic_evolution}
+1. $[\partial_s, \partial_t] = -(\partial_s \tangspeed - \curvecurv^2) \partial_s$
+2. $\pd[ds]{t} = (\partial_s \tangspeed - \curvecurv^2) ds$
+3. $\pd[\tang]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \nor$
+4. $\pd[\nor]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \tang$
+5. $\pd[\curvecurv]{t} = \partial_s^2 \curvecurv + \curvecurv^3 + \tangspeed \partial_s \curvecurv$.
+#+END_lemma
 
 * Short time existence and uniqueness
 Clean up \cite{MR1240580} and make it more geometric.
