@@ -33,7 +33,7 @@
 
 ** Networks
 
-We consider networks with a single loop. For us this means we have a piecewise smooth embedding for the loop:
+We consider networks with a single loop, $\network = (\gamma, L)$ with $L = \{L_i\}_{i=0}^{k-1}$. For us this means we have a piecewise smooth embedding for the loop:
 \[
 \gamma : \sphere^1 \to \RR^2.
 \]
@@ -55,9 +55,9 @@ We also impose the /triple condition/ at the nodes: let
 denote respectively the tangents to the loop on either side of the node $a_i$ and the tangent to the free curve $L_i$ at $a_i$. Then
 \begin{equation}
 \label{eq:triplecondition}
-\ip{\tang^+}{-\tang^-} = \ip{\tang^{\pm}}{\tang_i} - \frac{1}{2}.
+\ip{\tang^+}{-\tang^-} = \ip{\tang^{\pm}}{\tang_i} = - \frac{1}{2}.
 \end{equation}
-In other words, the tangents make equal angles at the nodes. See figure \ref{fg:network}.
+In other words, the tangents make equal angles $2\pi/3$ at the nodes. See figure \ref{fg:network}.
 
 Let us write $\tang$ for the oriented, unit tangent and $\nor$ for the unit, outer normal to $\gamma$ on the smooth part $\gamma^{\ast} = \gamma(\sphere^1\setdiff\{a_i\})$. Let us also write $\tang_i$, $\nor_i$ for the oriented unit, tangent and oriented, outer normal respectively to the connected smooth arcs $\gamma_i$, and
 \[
