@@ -77,43 +77,36 @@ with $s$ denoting the arc-length parameter.
 
 ** Curve Shortening of Networks
 
-The purpose of this paper is to study the evolution of triple-compatible loops under the curve shortening flow.
-
 #+BEGIN_defn
-A smooth, one-parameter family $\network_t = (L_t = (L_i)_t, \gamma_t = ((\gamma_i)_t))_{i=1}^n$ of closed, embedded networks of smooth curves evolves by /curve shortening/ if for each $i$, away from the nodes we have
-\begin{align*}
-\left(\pd[\gamma_i]{t}\right)^{\perp} &= -\curvecurv
-\intertext{and}
-\left(\pd[L_i]{t}\right)^{\perp} &= -\curvecurv.
-\end{align*}
-Here, for a vector field $X$ along a curve, $X^{\perp} = \ip{X}{\nor}$ denotes the normal component of $X$ with $\nor$ a choice of unit normal away from the nodes and $\curvecurv$ the curvature of the curve. We will assume that $\nor$ is exterior pointing on $\gamma$.
+A smooth, one-parameter family $\network_t = (\gamma_t = ((\gamma_i)_t), L_t = (L_i)_t)_{i=1}^k$ of embedded networks with one loop satisfying the triple condition \eqref{eq:triplecondition} evolves by /curve shortening/ if for each $i$,
+\begin{equation}
+\label{eq:csf}
+\left(\pd[\gamma_i]{t}\right)^{\perp} = -\curvecurv, \quad \text{and} \quad \left(\pd[L_i]{t}\right)^{\perp} = -\curvecurv.
+\end{equation}
+Here, for a vector field $X$ along a curve, $X^{\perp} = \ip{X}{\nor}$ denotes the outer normal component of $X$ on the smooth part $\network^{\ast} = (\gamma^{\ast}, L)$.
 #+END_defn
 
-For $\alpha = L_i, \gamma_i$, we can write
+In general, in order that for each $t$, $\network_t$ is an embedded network with one loop satisfying the triple condition \eqref{eq:triplecondition}, and evolving by the curve shortening flow \eqref{eq:csf}, there must be a non-zero tangential component of the speed. In other words,
 \[
-\pd[\alpha]{t} = (\tangspeed \tang - \curvecurv \nor)_{\alpha}.
+\pd[\gamma_i]{t} = -\curvecurv_i \nor_i + \tangspeed_i \tang_i, \quad \pd[L_i]{t} = -\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}
 \]
-where $\tang$ is the unit tangent to $\alpha$ and $\tangspeed$ is a smooth function on $\alpha$. The requirement that $\network_t$ remains a closed, embedded network requires that 
-\begin{align*}
-(\tangspeed \tang - \curvecurv \nor)_{\gamma_i} (1) &= (\tangspeed \tang - \curvecurv \nor)_{\gamma_{i+1}}(0) \\
-\intertext{and}
-(\tangspeed \tang - \curvecurv \nor)_{L_i} (0) &= (\tangspeed \tang - \curvecurv \nor)_{\gamma_i}(0).
-\end{align*}
-The tri-angle condition then imposes the adittional condition that for each $i$,
+where $\tangspeed_i, \tangspeed_{L_i}$ are any smooth functions satisfying
+\begin{equation}
+\label{eq:speedcompatability}
+-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+ = -\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^- = -\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}.
+\end{equation}
 
-It will be convenient for us to fix a parametrisation of our smooth family of loops. Thus we assume,
-\[
-(x, t) \in [0, L] \times [0, T) \mapsto \network(x, t) \in \RR^2
-\]
-with a partition,
-\[
-0 = a_0 < a_1 < \cdots < a_{k-1} < a_k = L
-\]
-such that each $\gamma_i = \gamma|_{(a_{i-1}, a_i)}$ is smooth, $\gamma_{i+1}(a_i) = \gamma_i(a_i)$ (with $i$ taken modulo $k$) and writing $T^+(a_i) = \lim_{x\to a_i^+} \gamma_{i+1}'(x)$, $T^-(a_i) = \lim_{x\to a_i^-} \gamma_{i}'(x)$ we have
-\[
-\ip{T^+}{T^-} = 1/2.
-\]
-To say that the interior angle is $2\pi/3$ requires also that
+Using the triple conditions \eqref{eq:triplecondition} \eqref{eq:triplerelations}, the first equality allows us to write $v_i^{\pm}$ in terms of the curvatures $\curvecurv_i^{\pm}$:
+\begin{align*}
+\tangspeed_i^+ &= \ip{-\curvecurv_i^- \nor_i^- + \tangspeed_i^- \tang_i^-}{\tang_i^+} = \frac{\sqrt{3}}{2} \curvecurv_i^- + \frac{1}{2} \tangspeed_i^- \\
+\tangspeed_i^- &= \ip{-\curvecurv_i^+ \nor_i^+ + \tangspeed_i^+ \tang_i^+}{\tang_i^-} = - \frac{\sqrt{3}}{2} \curvecurv_i^+ + \frac{1}{2} \tangspeed_i^+.
+\end{align*}
+Thus we have
+\begin{equation}
+\label{eq:tangspeedcurvture}
+\tangspeed_i^+ = \frac{2}{\sqrt{3}} \curvecurv_i^- - \frac{1}{\sqrt{3}} \curvecurv_i^+, \quad \tangspeed_i^- = -\frac{2}{\sqrt{3}} \curvecurv_i^+ + \frac{1}{\sqrt{3}} \curvecurv_i^-.
+\end{equation}
+
 \[
 \ip{T^+}{N^-} = , \quad \ip{T^-}{N^+} =
 \]
