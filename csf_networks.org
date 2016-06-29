@@ -88,9 +88,10 @@ Here, for a vector field $X$ along a curve, $X^{\perp} = \ip{X}{\nor}$ denotes t
 #+END_defn
 
 In general, in order that for each $t$, $\network_t$ is an embedded network with one loop satisfying the triple condition \eqref{eq:triplecondition}, and evolving by the curve shortening flow \eqref{eq:csf}, there must be a non-zero tangential component of the speed. In other words,
-\[
+\begin{equation}
+\label{eq:csf_with_tang}
 \pd[\gamma_i]{t} = -\curvecurv_i \nor_i + \tangspeed_i \tang_i, \quad \pd[L_i]{t} = -\curvecurv_{L_i} \nor_{L_i} + \tangspeed_{L_i} \tang_{L_i}
-\]
+\end{equation}
 where $\tangspeed_i, \tangspeed_{L_i}$ are any smooth functions satisfying
 \begin{equation}
 \label{eq:speedcompatability}
@@ -163,6 +164,24 @@ Let $(p,q) \in \gamma_t^{\ast}$ be smooth points. Then,
 \partial_t L &= - \int_{\gamma} \curvecurv^2 ds + \sum_{m=i}^{k} \corneranglespeed_m.
 \end{align*}
 #+END_lemma
+
+#+BEGIN_proof
+From the evolution equation \eqref{eq:csf_with_tang} we obtain,
+# \begin{align*}
+# \frac{1}{2}\partial_t \ip{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)} &= \ip{-\curvecurv_q \nor_q + \tangspeed_q \tang_q + \curvecurv_p \nor_p - \tangspeed_p \tang_p} \\
+# &= d\left(-\curvecurv_q \ip{\nor_q}{w} + \tangspeed_q \ip{\tang_q}{w} + \curvecurv_p \ip{\nor_p}{w} - \tangspeed_p \ip{\tang_p}{w}\right)
+# \end{align*}
+and the evolution of $d = \left(\ip{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\right)^{1/2}$ follows by the chain rule.
+
+Using the evolution of $ds$ from Lemma \ref{lem:basic_evolution},
+\begin{align*}
+\partial_t \ell(p,q) &= \partial_t \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \partial_t \int_{a_{m-1}}^{a_m} ds_t + \partial_t  \int_{a_{j-1}}^q ds_t \\
+&= \int_p^{a_i} \partial_s \tangspeed - \curvecurv^2 ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} \partial_s \tangspeed - \curvecurv^2 ds_t + \int_{a_{j-1}}^q \partial_s \tangspeed - \curvecurv^2 ds_t \\
+&= \int_p^q \curvecurv^2 ds + \tangspeed_i^- - \tangspeed(p) + \sum_{m=i+1}^{j-1} \tangspeed_m^- - \tangspeed_{m-1}^+ + \tangspeed(q) - \tangspeed_{j-1}^+ \\
+&= \int_p^q \curvecurv^2 ds + \tangspeed(q) - \tangspeed(p) + \sum_{m=i}^{j-1} \tangspeed_m^- - \tangspeed_m^+.
+\end{align*}
+The evolution of $\ell$ follows immediately from the definition of $\corneranglespeed$, while the evolution of $L$ follows by taking $p=a_0$, $q=a_k$.
+#+END_proof
 
 
 * Short time existence and uniqueness
