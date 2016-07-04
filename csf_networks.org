@@ -21,6 +21,10 @@
 #+LATEX_HEADER: \address{Department of Mathematics, University of California San Diego}
 #+LATEX_HEADER: \email{pbryan@ucsd.edu}
 
+#+LATEX_HEADER: \author{Mariel S\'aez}
+#+LATEX_HEADER: \address{Facultad de Matematicas, Pontificia Universidad Cat\'olica de Chile, Avenida Vicu\'na Mackenna 4860, Macul, 6904441 Santiago, Chile}
+#+LATEX_HEADER: \email{mariel@mat.puc.cl}
+
 # *** Metadata
 #+LaTeX_HEADER: \keywords{Curvature flows, Distance comparison, Networks, curves}
 #+LATEX_HEADER: \subjclass[2010]{53C44, 35K55, 58J35}
@@ -31,7 +35,6 @@
 * Notes								   :noexport:
 * Introduction
 * Notation and Definitions
-
 ** Networks
 
 We consider networks with a single loop, $\network = (\gamma, L)$ with $L = \{L_i\}_{i=0}^{k-1}$. For us this means we have a piecewise smooth embedding for the loop:
@@ -126,14 +129,22 @@ The evolution of geometric quantities under the Curve Shortening Flow is the sam
 
 #+BEGIN_lemma
 \label{lem:basic_evolution}
+The following equations hold along the flow:
 1. $[\partial_s, \partial_t] = -(\partial_s \tangspeed - \curvecurv^2) \partial_s$
 2. $\pd[ds]{t} = (\partial_s \tangspeed - \curvecurv^2) ds$
 3. $\pd[\tang]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \nor$
 4. $\pd[\nor]{t} = -(\partial_s \curvecurv + \tangspeed\curvecurv) \tang$
 5. $\pd[\curvecurv]{t} = \partial_s^2 \curvecurv + \curvecurv^3 + \tangspeed \partial_s \curvecurv$.
+At a node, one-sided analogues of these equations hold. For example, at a node,
+\[
+\pd[\curvecurv^+]{t} = (\partial^+_s)^2 \curvecurv^+ + (\curvecurv^+)^3 + \tangspeed^+ \partial^+_s \curvecurv^+ \text{ and } \pd[\curvecurv^-]{t} = (\partial^-_s)^2 \curvecurv^- + (\curvecurv^-)^3 + \tangspeed^- \partial^-_s \curvecurv^-.
+\]
 #+END_lemma
 
-The /extrinsic distance/,
+Most of our work here concerns intrinsic and extrinsic distances.
+
+#+BEGIN_defn
+Define the /extrinsic distance/,
 \[
 d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|
 \]
@@ -142,6 +153,7 @@ and the /oriented/, /intrinsic distance/ or /arc length/,
 \ell_t(p, q) = \int_{\gamma_t} ds_t = \int_p^{a_i} ds_t + \sum_{m=i+1}^{j-1} \int_{a_{m-1}}^{a_m} ds_t + \int_{a_{j-1}}^q ds_t
 \]
 where $p \in I_i = [a_{i-1}, a_i]$, $q \in I_j = [a_{j-1}, a_j]$ with $j\geq i$.
+#+END_defn
 
 Note that by oriented, we mean the length along $\gamma$ from $p$ to $q$ in the chosen orientation of $\gamma$. Thus either $\ell(p,q)$ equals the intrinsic distance between $p$ and $q$, or $L$ minus the intrinsic length, where $L$ denotes the total length of $\gamma$.
 
@@ -183,7 +195,6 @@ Using the evolution of $ds$ from Lemma \ref{lem:basic_evolution},
 The evolution of $\ell$ follows immediately from the definition of $\corneranglespeed$, while the evolution of $L$ follows by taking $p=a_0$, $q=a_k$.
 #+END_proof
 
-
 * Short time existence and uniqueness
 Clean up \cite{MR1240580} and make it more geometric.
 * The chord/arc profile
@@ -209,7 +220,7 @@ The next proposition gives the asymptotic behaviour of the chord/arc-profile of 
 #+BEGIN_prop
 Let $\network$ be a network, with piecewise closed curve $\gamma$. Then as $x\to 0$ the chord/arc-profile of $\gamma$ satisfies
 \[
-\lim_{x\to 0} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^3} = \frac{1}{16} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}
+\lim_{x\to 0,2\pi} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^2} = \frac{1}{16} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}
 \]
 #+END_prop
 
@@ -218,7 +229,7 @@ By taking $x$ small, we consider either points $(p,q) \in \overline{\gamma_i}$ o
 
 In that case, parametrising by arc-length $s$, near each node $a_i$ we compute,
 \[
-d(a_i - s, a_i + s) = \sqrt{3} s + \frac{1}{4} (\curvecurv^+(a_i) + \curvecurv^-(a_i))s^3 + \bigo(s^5),
+d(a_i - s, a_i + s) = \sqrt{3} s + \frac{1}{4} (\curvecurv^+(a_i) + \curvecurv^-(a_i))s^2 + \bigo(s^3),
 \]
 and the result follows since $\ell(a_i-s, a_i+s) = 2s$.
 \end{proof}
