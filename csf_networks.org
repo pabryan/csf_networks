@@ -198,7 +198,6 @@ The evolution of $\ell$ follows immediately from the definition of $\cornerangle
 * Short time existence and uniqueness
 Clean up \cite{MR1240580} and make it more geometric.
 * The chord/arc profile
-
 In this section we introduce the chord/arc-profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is similar to \cite{alpha_csf_dist_comp} for flows of smooth curves in the plane. Of course, the presence of nodes for networks is felt here.
 
 ** Definition and basic properties
@@ -218,21 +217,83 @@ By compactness of $\sphere^1\times \sphere^1$ (which parametrises the set of con
 The next proposition gives the asymptotic behaviour of the chord/arc-profile of networks $\network$, near the end point $x=0$, and so by symmetry also at the end point $x=2\pi$.
 
 #+BEGIN_prop
-Let $\network$ be a network, with piecewise closed curve $\gamma$. Then as $x\to 0$ the chord/arc-profile of $\gamma$ satisfies
+Let $\network$ be a network, with piecewise closed curve $\gamma$ satisying the triple compatabilit condition \eqref{eq:triple_compatible} at each node. Then as $x\to 0$ the chord/arc-profile of $\gamma$ satisfies
 \[
 \lim_{x\to 0,2\pi} \frac{\chordarcprofile(x) - \tfrac{\sqrt{3}}{2}x}{x^2} = \frac{1}{16} \max_i \{\curvecurv^+(a_i) + \curvecurv^-(a_i)\}
 \]
 #+END_prop
 
 \begin{proof}
-By taking $x$ small, we consider either points $(p,q) \in \overline{\gamma_i}$ or points $p \in \gamma_i, q \in \gamma_{i+1}$. In the former case, because the curve is straight to first order, $d = \ell + \bigo(\ell^2)$. In the latter case, to first order, the curve is two straight lines meeting at an angle of $2\pi/3$ and so $d = \tfrac{\sqrt{3}}{2} \ell + \bigo(\ell^2)$. Thus for sufficiently small $x$, the infimum in the definition of $\chordarcprofile$ is attained in the latter case with $p,q$ lying on either side of a node.
+Choose a point $(x_0, y_0) \in \gamma(\sphere)$ and parametrise $\gamma$ by arc-length so that $\gamma(0) = (x_0, y_0)$. If $(x_0, y_0)$ is not a node, the there is an $\epsilon > 0$ so that if $0 \leq |s| < \epsilon$ then $\gamma(s)$ is not a node. If $(x_0, y_0)$ is a node, then $\gamma(s)$ is not a node provided $0 < |s| < \epsilon$, and derivatives at $s=0$ must be interpreted as one-sided derivatives.
 
-In that case, parametrising by arc-length $s$, near each node $a_i$ we compute,
+With a view to obtaining an asymptotic expansion of $d$ for small $s$, write
 \[
-d(a_i - s, a_i + s) = \sqrt{3} s + \frac{1}{4} (\curvecurv^+(a_i) + \curvecurv^-(a_i))s^2 + \bigo(s^3),
+d^2(s, -s) = \ip{\gamma(s) - \gamma(-s)}{\gamma(s) - \gamma(-s)} \text{ and } \ell(s, -s) = 2s.
 \]
-and the result follows since $\ell(a_i-s, a_i+s) = 2s$.
+Then
+\[
+C_0 = d^2(0, 0) = 0.
+\]
+Differentiating gives,
+\[
+C_1 = \partial_s|_{s=0} d^2(s ,-s) = 2 \left.\ip{\tang(s) + \tang(-s)}{\gamma(s) - \gamma(-s)}\right|_{s=0} = 0.
+\]
+Differentiating again gives,
+\[
+\begin{split}
+\partial_s^2|_{s=0} d^2(s ,-s) &= \lim_{s\to 0} 2 \left[\vphantom{\frac{1}{2}} \ip{-\curvecurv(s)\nor(s) + \curvecurv(-s)\nor(-s)}{\gamma(s) - \gamma(-s)} \right. \\
+&\quad \left. + \ip{\tang(s) + \tang(-s)}{\tang(s) + \tang(-s)} \vphantom{\frac{1}{2}}\right] \\
+&= 2 \lim_{s\to 0} \ip{\tang(s) + \tang(-s)}{\tang(s) + \tang(-s)} \\
+&= 2 \|\tang^+(0) + \tang^-(0)\|^2 \\
+&= 2 \|\tang^+(0)\|^2 + 2 \|\tang^-(0)\|^2 + 4 \ip{\tang^+(0)}{\tang^-(0)}.
+\end{split}
+\]
+If $(x_0, y_0)$ is not a node, then $\tang^+ = \tang^-$, whereas if it is a node, recallinq equation \eqref{eq:triplecondition}, $\ip{\tang^+}{\tang^-} = 1/2$ we obtain,
+\[
+C_2 = \frac{1}{2} \partial_s^2 d^2(s ,-s)|_{s=0} = \begin{cases}
+4,& (x_0, y_0) \text{ is a node} \\
+3,& (x_0, y_0) \text{ is not a node}.
+\end{cases}
+\]
+
+Hence,
+\[
+d^2(s, -s) = C_2 s^2 + \bigo(s^3) \text{ as } s \to 0,
+\]
+and for $s$ sufficiently small, the infimum of $d$ subject to $\ell = 2s$ is attained around a node, and so in obtaining the next order term, we may assume $(x_0, y_0)$ is a node and that $C_2 = 3$.
+
+Differentiating once more,
+\[
+\begin{split}
+C_3 &= \frac{1}{6}\partial_s^3|_{s=0} d^2(s ,-s) = \frac{1}{3} \lim_{s\to 0} \left[\vphantom{\frac{1}{2}} \ip{\partial_s\left(-\curvecurv(s)\nor(s) + \curvecurv(-s)\nor(-s)\right)}{\gamma(s) - \gamma(-s)} \right. \\
+&\quad + \ip{-\curvecurv(s)\nor(s) + \curvecurv(-s)\nor(-s)}{\tang(s) + \tang(-s)} \\
+&\quad \left. + 2 \ip{-\curvecurv(s)\nor(s) + \curvecurv(-s)\nor(-s)}{\tang(s) + \tang(-s)}\vphantom{\frac{1}{2}}\right] \\
+&= \ip{-\curvecurv^+\nor^+ + \curvecurv^-\nor^-}{\tang^+ + \tang^-} \\
+&= -\curvecurv^+ \ip{\nor^+}{\tang^-} + \curvecurv^- \ip{\nor^-}{\tang^+} \\
+&= -\frac{\sqrt{3}}{2} \left(\curvecurv^+ + \curvecurv^-\right) 
+\end{split}
+\]
+where we used $-\tfrac{\sqrt{3}}{2} = -\ip{\nor^+}{\tang^-} = \ip{\nor^-}{\tang^+}$ from \eqref{eq:triplerelations} in the last line.
+
+Now we have,
+\[
+d^2(s, -s) = 3 s^2 - \frac{\sqrt{3}}{2}(\curvecurv^+ + \curvecurv^-) s^3 + \bigo(s^4) \text{ as } s \to 0.
+\]
+Taking the square root, we finally obtain the necessary asymptotics,
+\[
+d(s, -s) = \sqrt{3} s - \frac{1}{4} (\curvecurv^+ + \curvecurv^-) s^2 + \bigo(s^3).
+\]
+
+Taking a node attaining the maximum of $(\curvecurv^+ + \curvecurv^-)$ among all other nodes, we find that the $s^2$ coefficient at that node is no larger than the $s^2$ coefficient of the other nodes. The result then follows since $s = \tfrac{1}{2}\ell$.
 \end{proof}
+
+#+BEGIN_remark
+It's worth comparing the asymptotics of a network with the asymptotics of a smooth curve. In the latter case, $C_2 = 4$ and $C_3 = 0$ since $-\ip{\nor^+}{\tang^-} = \ip{\nor^-}{\tang^+} = 0$, which is consistent with \cite{MR2794630}. There it is also shown that $C_4 = -3 \sup \curvecurv$ and hence,
+\[
+\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} = -\frac{1}{12}\sup \curvecurv.
+\]
+So the presense of triple-compatible nodes alters the first order constant from $1$ to $\tfrac{\sqrt{3}}{2}$; the former is just the profile of a straight line, while the latter is just the  profile of two straight lines meeting at an angle of $2\pi/3$. More interestingly is that the curvature at a node appears at the lower order $x^2$ for networks than the order $x^3$ in the smooth case. In both cases, the profile concentrates around the maximum curvature if we interpret the angle at a node as embuing it with higher curvature than any smooth point.
+#+END_remark
 
 ** Variations
 
